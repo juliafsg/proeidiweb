@@ -22,11 +22,12 @@ public class Main {
 		java.sql.Timestamp dataM = new java.sql.Timestamp(now.getTime());
 		System.out.println(dataM);
 				
-		Pessoa pessoa = new Pessoa(3,"Abma", dataN, "016ere437", "juliafsg@outlook.com", false, "julinha123", dataM);    
+		Pessoa pessoa = new Pessoa(4,"Abma", dataN, "0160000", "juliafsg@outlook.com", false, "julinha123", dataM);    
 		
 		PessoaJDBC pessoajdbc = new PessoaJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
 
 		pessoajdbc.insert(pessoa);
+		pessoajdbc.remove(pessoa);
 		Operacao comando = new Operacao();
 		
 		comando.listarPessoas(pessoajdbc);
