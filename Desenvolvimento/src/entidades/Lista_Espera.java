@@ -17,6 +17,10 @@ public class Lista_Espera {
 		this.confirmado = confirmado;
 	}
 
+	public Lista_Espera() {
+		super();
+	}
+
 	public int getIdAluno() {
 		return idAluno;
 	}

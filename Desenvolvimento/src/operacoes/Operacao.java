@@ -16,10 +16,13 @@ public class Operacao extends EntidadeJDBC {
 	
 	// Listar todos os envolvidos no projeto
 	public void listarPessoas(PessoaJDBC pessoajdbc) {
+		
+		System.out.println("Id    Nome");
+		System.out.println("---------------------------------------");
 
 		List<Pessoa> listpessoa = pessoajdbc.retrievePessoas();
 		for (Pessoa p : listpessoa) {
-			System.out.println(p.getIdPessoa() + " " + p.getpNome());
+			System.out.println(p.getIdPessoa() + "    " + p.getpNome());
 		}
 		
 	}
@@ -27,10 +30,11 @@ public class Operacao extends EntidadeJDBC {
 	// Listar Turmas
 	
 	public void listarTurmas(TurmaJDBC turmajdbc) {
-
+		System.out.println(" Turma    Id Curso    Total de Vagas");
+		System.out.println("---------------------------------------");
 		List<Turma> listturma = turmajdbc.retrieveTurmas();
 		for (Turma t : listturma) {
-			System.out.println(t.getIdTurma() + " " + t.getIdCurso() + " " + t.gettVagas() + " " + t.isConsolidada());
+			System.out.println("   " + t.getIdTurma() + "          " + t.getIdCurso() + "            " + t.gettVagas());
 		}
 		
 	}
@@ -38,17 +42,19 @@ public class Operacao extends EntidadeJDBC {
 	// Listar Cursos
 	
 		public void listarCursos(CursoJDBC cursojdbc) {
-
+			System.out.println("  Nome         Descrição                     Carga Horária ");
+			System.out.println("-----------------------------------------------------------");
 			List<Curso> listcurso = cursojdbc.retrieveCursos();
 			for (Curso c : listcurso) {
-				System.out.println(c.getIdCurso() + " " + c.getcNome() + " " + c.getcDescricao() + " " + c.getCargaHoraria());
+				System.out.println(c.getIdCurso() + " " + c.getcNome() + "   " + c.getcDescricao() + "            " + c.getCargaHoraria());
 			}
 		}
 	
 	// Listar Salas
 	
 	public void listarSalas(SalaJDBC salajdbc) {
-
+		System.out.println("Id    Descrição");
+		System.out.println("---------------------------------------");
 		List<Sala> listsala = salajdbc.retrieveSalas();
 		for (Sala s : listsala) {
 			System.out.println(s.getIdSala() + " " + s.getsDescricao());
@@ -59,11 +65,12 @@ public class Operacao extends EntidadeJDBC {
 	// Listar Postagem
 	
 	public void listarPostagens(PostagemJDBC postagemjdbc) {
-
+		System.out.println("  Pessoa    Publicação                                 Data");
+		System.out.println("--------------------------------------------------------------");
 		List<Postagem> listpostagem = postagemjdbc.retrievePostagens();
 		if (listpostagem != null) {
 			for (Postagem p : listpostagem) {
-				System.out.println(p.getIdPostagem() + " " + p.getIdPessoa() + " " + p.getTexto() + " " + p.getData());
+				System.out.println("    " + p.getIdPessoa() + "       " + p.getTexto() + "    " + p.getData());
 			}
 		}
 		else{System.out.println("\n Ainda não foram feitas postagens!");}
@@ -73,10 +80,11 @@ public class Operacao extends EntidadeJDBC {
 	// Listar Agendamentos
 	
 	public void listarAgendar(AgendarJDBC agendarjdbc) {
-
+		System.out.println("  Aluno    Voluntário    Data      Horario    Confirmado");
+		System.out.println("-------------------------------------------------------");
 		List<Agendar> listagendar = agendarjdbc.retrieveAgendamentos();
 		for (Agendar a : listagendar) {
-			System.out.println(a.getIdAluno() + " " + a.getIdVoluntario() + " " + a.getData() + " " + a.getHorario() + " " + a.isConfirmado());
+			System.out.println("     " +a.getIdAluno() + "          " + a.getIdVoluntario() + "      " + a.getData() + "    " + a.getHorario() + "       " + a.isConfirmado());
 		}
 		
 	}
@@ -84,10 +92,12 @@ public class Operacao extends EntidadeJDBC {
 	// Listar Lista_Espera
 	
 	public void listarLista_Espera(Lista_EsperaJDBC lista_esperajdbc) {
-
+		
+		System.out.println("  Aluno    Curso");
+		System.out.println("---------------------------------------");
 		List<Lista_Espera> listlista_espera = lista_esperajdbc.retrieveListas_Espera();
 		for (Lista_Espera l : listlista_espera) {
-			System.out.println(l.getIdAluno() + " " + l.getIdCurso() + " " + l.getData() + " " + l.getData() + " " + l.isConfirmado());
+			System.out.println("    " + l.getIdAluno() + "        " + l.getIdCurso());
 		}
 		
 	}
@@ -101,10 +111,12 @@ public class Operacao extends EntidadeJDBC {
 			String sql = "SELECT * FROM pessoa NATURAL JOIN horario_disponibilidade"; 
 			
 			ResultSet rs = comando.executeQuery(sql);
+			System.out.println("  Nome       Email                  Disponibilidade");
+			System.out.println("--------------------------------------------------");
 			
 			while (rs.next()){
 				
-				System.out.println(rs.getInt("idPessoa") + " " + rs.getString("pNome") + " " + rs.getString("pEmail") + " " + rs.getString("horario_disponibilidade") + " " + rs.getInt("ano") + " " + rs.getInt("periodo"));
+				System.out.println(rs.getInt("idPessoa") + " " + rs.getString("pNome") + "     " + rs.getString("pEmail") + "       " + rs.getString("horario_disponibilidade"));
 				
 			}
 			
@@ -115,8 +127,7 @@ public class Operacao extends EntidadeJDBC {
 		}
 
 	}
-	
-	// 
+	 
 	
 	public void listarTurmasPorAluno(Turma_AlunoJDBC turma_alunojdbc, int idAluno) {
 

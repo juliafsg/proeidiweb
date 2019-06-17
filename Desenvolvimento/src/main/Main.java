@@ -39,6 +39,7 @@ public class Main {
 		while (valid) {
 			
 			String acoes = "\n\n"
+					+ "0: Sair\n"
 					+ "1: Listar todas pessoas\n"
 					+ "2: Listar todas turmas\n"
 					+ "3: Listar todos cursos\n"
@@ -64,27 +65,35 @@ public class Main {
 			
 			switch (n) {
 			  case 1:
+				  System.out.println("Pessoas envolvidas no projeto:\n");
 				  comando.listarPessoas(pessoajdbc);
 				  break;
 			  case 2:
+				  System.out.println("Turmas do projeto:\n");
 				  comando.listarTurmas(turmajdbc);
 				  break;
 			  case 3:
+				  System.out.println("Cursos do projeto:\n");
 				  comando.listarCursos(cursojdbc);
 				  break;
 			  case 4:
+				  System.out.println("Salas de aula:\n");
 				  comando.listarSalas(salajdbc);
 				  break;
 			  case 5:
+				  System.out.println("Postagens:\n");
 				  comando.listarPostagens(postagemjdbc);
 				  break;
 			  case 6:
+				  System.out.println("Agendamentos:\n");
 				  comando.listarAgendar(agendarjdbc);
 			      break;
 			  case 7:
+				  System.out.println("Lista de Espera:\n");
 				  comando.listarLista_Espera(lista_esperajdbc);
 				  break;
 			  case 8:
+				  System.out.println("Voluntários:\n");
 				  comando.listarVoluntarios();
 				  break;
 			  case 9:
@@ -211,6 +220,17 @@ public class Main {
 		//Turma_Voluntario turma_Voluntario= new Turma_Voluntario(1,1,2019,2);
 		//Turma_VoluntarioJDBC turma_Voluntariojdbc = new Turma_VoluntarioJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
 		//turma_Voluntariojdbc.insert(turma_Voluntario);
+		
+		// LISTA_ESPERA
+		//Lista_Espera lista_Espera= new Lista_Espera(6,1,dataM,true);
+		//Lista_EsperaJDBC lista_Esperajdbc = new Lista_EsperaJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
+		//lista_Esperajdbc.insert(lista_Espera);
+		
+		// HORARIO_DISPONIBILIDADE
+		//Horario_Disponibilidade horario_Disponibilidade= new Horario_Disponibilidade(1,"M12",2019,2);
+		//Horario_DisponibilidadeJDBC horario_Disponibilidadejdbc = new Horario_DisponibilidadeJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
+		//horario_Disponibilidadejdbc.insert(horario_Disponibilidade);
+		
 		
 		
 	}
