@@ -17,6 +17,10 @@ public class Voluntario extends Pessoa{
 		this.gerenciador = gerenciador;
 	}
 
+	public Voluntario() {
+		super();
+	}
+
 	public int getDDD() {
 		return DDD;
 	}

@@ -18,6 +18,10 @@ public class Horario {
 		this.data = data;
 	}
 
+	public Horario() {
+		super();
+	}
+
 	public int getIdTurma() {
 		return idTurma;
 	}

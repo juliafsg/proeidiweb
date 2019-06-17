@@ -7,14 +7,20 @@ public class Postagem {
 	private int idPostagem;
 	private int idPessoa;
 	private String texto;
+	private String assunto;
 	private Date data;
 	
-	public Postagem(int idPostagem, int idPessoa, String texto, Date data) {
+	public Postagem(int idPostagem, int idPessoa, String texto, String assunto, Date data) {
 			super();
 			this.idPostagem = idPostagem;
 			this.idPessoa = idPessoa;
 			this.texto = texto;
 			this.data = data;
+			this.assunto = assunto;
+	}
+
+	public Postagem() {
+		super();
 	}
 
 	public int getIdPostagem() {
@@ -47,6 +53,14 @@ public class Postagem {
 
 	public void setData(Date data) {
 		this.data = data;
+	}
+	
+	public String getAssunto() {
+		return assunto;
+	}
+
+	public void setAssunto(String assunto) {
+		this.assunto = assunto;
 	}
 	
 	

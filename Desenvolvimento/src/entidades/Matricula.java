@@ -15,6 +15,10 @@ public class Matricula {
 		this.dataMatricula = dataMatricula;
 	}
 
+	public Matricula() {
+		super();
+	}
+
 	public int getIdAluno() {
 		return idAluno;
 	}

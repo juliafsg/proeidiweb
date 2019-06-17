@@ -16,6 +16,10 @@ public class Frequencia {
 		this.estavaFrequente = estavaFrequente;
 	}
 
+	public Frequencia() {
+		super();
+	}
+
 	public int getIdPessoa() {
 		return idPessoa;
 	}

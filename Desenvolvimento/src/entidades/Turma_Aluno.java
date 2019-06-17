@@ -11,6 +11,10 @@ public class Turma_Aluno {
 		this.idPessoa = idPessoa;
 	}
 
+	public Turma_Aluno() {
+		super();
+	}
+
 	public int getIdTurma() {
 		return idTurma;
 	}

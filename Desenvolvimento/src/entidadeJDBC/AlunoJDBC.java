@@ -1,14 +1,16 @@
 package entidadeJDBC;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import entidades.Pessoa;
+import entidades.Aluno;
 
 public class AlunoJDBC extends EntidadeJDBC{
 
 	public AlunoJDBC(String server, String user, String password) throws SQLException {
 		super(server, user, password);
-		// TODO Auto-generated constructor stub
 	}
 
 	// MÉTODOS DE CONSULTA
@@ -22,7 +24,7 @@ public class AlunoJDBC extends EntidadeJDBC{
             buffer.append("UPDATE aluno SET ");
             buffer.append(returnFieldValuesBD(aluno));
             buffer.append(" WHERE idPessoa=");
-            buffer.append(aluno.getCpf());
+            buffer.append(aluno.getIdPessoa());
             String sql = buffer.toString();
             
             System.out.println("SQL para ATUALIZAR em aluno: " + sql);
@@ -39,31 +41,26 @@ public class AlunoJDBC extends EntidadeJDBC{
 	}
 
 	// Procurar
-	public Pessoa search(int idPessoa) {
+	public Aluno search(int idPessoa) {
 		try{
 			super.conectar();
 			
-			String sql = "SELECT * FROM aluno WHERE idPessoa = " + this.retornarValorStringBD(cpf); 
+			String sql = "SELECT * FROM aluno WHERE idPessoa = " + idPessoa; 
 			
 			ResultSet rs = comando.executeQuery(sql);
 			
-			Pessoa pessoa = new Pessoa();
+			Aluno aluno = new Aluno();
 			
 			if (rs.next()){
 				
-				pessoa.setIdPessoa(rs.getInt("idPessoa"));
-				pessoa.setpNome((rs.getString("pNome")));
-				pessoa.setDataNascimento(rs.getDate("dataNascimento"));
-				pessoa.setCpf((rs.getString("cpf")));
-				pessoa.setpEmail((rs.getString("pEmail")));
-				pessoa.setAtivo((rs.getBoolean("ativo")));
-				pessoa.setSenha((rs.getString("senha")));
-				pessoa.setDataMatricula(rs.getTimestamp("dataMatricula"));
+				aluno.setIdPessoa(rs.getInt("idPessoa"));
+				aluno.setDDD((rs.getInt("DDD")));
+				aluno.setTelefone(rs.getString("telefone"));
 			}
 			
-			System.out.println(pessoa.getpNome());
+			System.out.println(aluno.getIdPessoa());
 			super.fechar();
-			return pessoa;
+			return aluno;
 			
 		} catch(SQLException e){
 			e.printStackTrace();
@@ -74,49 +71,92 @@ public class AlunoJDBC extends EntidadeJDBC{
 		
 	}
 	// Inserir
-		
+	public void insert(Aluno aluno) {
+		try {	
+				super.conectar();
+			
+		        StringBuffer buffer = new StringBuffer();
+		        buffer.append("INSERT INTO aluno (");
+		        buffer.append(this.retornarCamposBD());
+		        buffer.append(") VALUES (");
+		        buffer.append(retornarValoresBD(aluno));
+		        buffer.append(")");
+		        String sql = buffer.toString();
+
+		        System.out.println("SQL para INSERIR em PESSOA : " + sql);
+
+		        comando.executeUpdate(sql);
+		        super.fechar();
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	// Remover
-		
+	public void remove(Aluno aluno) {
+
+        try {
+        	super.conectar();
+    		
+    		String sql ="DELETE FROM aluno WHERE idPessoa=" + aluno.getIdPessoa();
+            System.out.println("SQL para REMOVER em aluno : " + sql);
+			comando.executeUpdate(sql);
+
+			super.fechar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	// Listar
-		
+	public List<Aluno> retrieveAlunos() {
+		try {
+			super.conectar();
+			
+			String sql = "SELECT * FROM pessoa";
+			ResultSet rs = comando.executeQuery(sql);
+			List<Aluno> alunos= new ArrayList<Aluno>();
+			
+			while (rs.next()){
+				Aluno aluno = new Aluno();
+				
+				aluno.setIdPessoa(rs.getInt("idPessoa"));
+				aluno.setDDD((rs.getInt("DDD")));
+				aluno.setTelefone(rs.getString("telefone"));
+				
+				alunos.add(aluno);
+			}
+			super.fechar();
+			
+			return alunos;
+		} catch(SQLException e){
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	// MÉTODOS AUXILIARES
-	private String retornarValoresBD(Pessoa p) {
+	private String retornarValoresBD(Aluno a) {
 		return
-		        p.getIdPessoa()
-		        + ", "
-		        + retornarValorStringBD(p.getpNome())
-		        + ", "
-		        + retornarValorStringBD(p.getDataNascimento().toString())
-		        + ", "
-		        + retornarValorStringBD(p.getCpf())
-		        + ", "
-		        + retornarValorStringBD(p.getpEmail())
-		        + ", "
-		        + p.isAtivo()
-		        + ", "
-		        + retornarValorStringBD(p.getSenha())
-		        + ", "
-		        + retornarValorStringBD(p.getDataMatricula().toString());
+		        a.getIdPessoa() + 
+		        ", " + a.getDDD() +
+		        ", " + retornarValorStringBD(a.getTelefone());
 	}
 
-	private String returnFieldValuesBD(Pessoa p) {
+	private String returnFieldValuesBD(Aluno a) {
 		StringBuffer buffer = new StringBuffer();
         buffer.append("idPessoa=");
-        buffer.append(p.getIdPessoa());
-        buffer.append(", pNome=");
-        buffer.append(retornarValorStringBD(p.getpNome()));
-        buffer.append(", dataNascimento=");
-        buffer.append(retornarValorStringBD(p.getDataNascimento().toString()));
-        buffer.append(", cpf=");
-        buffer.append(retornarValorStringBD(p.getCpf()));
-        buffer.append(", pEmail=");
-        buffer.append(retornarValorStringBD(p.getpEmail()));
-        buffer.append(", ativo=");
-        buffer.append(p.isAtivo());
-        buffer.append(", senha=");
-        buffer.append(retornarValorStringBD(p.getSenha()));
-        buffer.append(", dataMatricula=");
-        buffer.append(retornarValorStringBD(p.getDataMatricula().toString()));
+        buffer.append(a.getIdPessoa());
+        buffer.append(", DDD=");
+        buffer.append(a.getDDD());
+        buffer.append(", telefone=");
+        buffer.append(retornarValorStringBD(a.getTelefone()));
 
         return buffer.toString();
 	}

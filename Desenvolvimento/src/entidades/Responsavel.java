@@ -11,6 +11,10 @@ public class Responsavel {
 		this.idPessoa = idPessoa;
 	}
 	
+	public Responsavel() {
+		super();
+	}
+
 	public int getIdTurma() {
 		return idTurma;
 	}

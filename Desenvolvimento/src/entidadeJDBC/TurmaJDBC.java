@@ -1,10 +1,15 @@
 package entidadeJDBC;
 
-import entidades.Pessoa;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import entidades.Turma;
 
 public class TurmaJDBC extends EntidadeJDBC{
 
-	public PessoaJDBC(String server, String user, String password) throws SQLException {
+	public TurmaJDBC(String server, String user, String password) throws SQLException {
 		super(server, user, password);
 	}
 	
@@ -16,7 +21,7 @@ public class TurmaJDBC extends EntidadeJDBC{
         try {
         	super.conectar();
         	StringBuffer buffer = new StringBuffer();
-            buffer.append("UPDATE pessoa SET ");
+            buffer.append("UPDATE turma SET ");
             buffer.append(returnFieldValuesBD(turma));
             buffer.append(" WHERE idTurma=");
             buffer.append(turma.getIdTurma());
@@ -52,7 +57,7 @@ public class TurmaJDBC extends EntidadeJDBC{
 				turma.settVagas((rs.getInt("tVagas")));
 				turma.setIdSala(rs.getInt("idSala"));
 				turma.setIdCurso((rs.getInt("idCurso")));
-				turma.setConsolidada((rs.getBoolean("pEmail")));
+				turma.setConsolidada((rs.getBoolean("consolidada")));
 			}
 			
 			System.out.println(turma.getIdCurso());
@@ -128,7 +133,7 @@ public class TurmaJDBC extends EntidadeJDBC{
 				turma.settVagas((rs.getInt("tVagas")));
 				turma.setIdSala(rs.getInt("idSala"));
 				turma.setIdCurso((rs.getInt("idCurso")));
-				turma.setConsolidada((rs.getBoolean("pEmail")));
+				turma.setConsolidada((rs.getBoolean("consolidada")));
 				turmas.add(turma);
 			}
 			super.fechar();
@@ -147,7 +152,6 @@ public class TurmaJDBC extends EntidadeJDBC{
 	private String retornarValoresBD(Turma t) {
 		return
 		        t.getIdTurma() + 
-		        ", " + t.getIdTurma() + 
 		        ", " + t.gettVagas() +
 		        ", " + t.getIdSala() + 
 		        ", " + t.getIdCurso() + 

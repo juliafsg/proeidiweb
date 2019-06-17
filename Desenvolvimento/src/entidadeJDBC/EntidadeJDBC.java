@@ -1,4 +1,4 @@
-package entidadeJDBC;
+ package entidadeJDBC;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -36,16 +36,15 @@ public class EntidadeJDBC {
 		protected void conectar() throws ClassNotFoundException, SQLException  {
 	        con = ConFactory.conexao(URL, NOME, SENHA, BANCO);  
 			comando = con.createStatement();  
-	        System.out.println("Conectado!");     
+	        //System.out.println("Conectado!");     
 		}
 		
 		protected void fechar() {
 			try {  
 				comando.close();  
 				con.close();  
-				System.out.println("Conexao Fechada");  
+				//System.out.println("Conexao Fechada");  
 			} catch (SQLException e) {}  
 		}
-
 
 }

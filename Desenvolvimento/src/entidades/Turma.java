@@ -1,11 +1,25 @@
 package entidades;
 
 public class Turma {
+	
 	private int idTurma;
 	private int tVagas;
 	private int idSala;
 	private int idCurso;
 	private boolean consolidada;
+	
+	public Turma(int idTurma, int tVagas, int idSala, int idCurso, boolean consolidada) {
+		this.idTurma = idTurma;
+		this.tVagas = tVagas;
+		this.idSala = idSala;
+		this.idCurso = idCurso;
+		this.consolidada = consolidada;
+	}
+	
+	public Turma() {
+		super();
+	}
+	
 	public int getIdTurma() {
 		return idTurma;
 	}

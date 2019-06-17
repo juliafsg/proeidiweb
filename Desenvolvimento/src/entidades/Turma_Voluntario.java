@@ -6,15 +6,19 @@ public class Turma_Voluntario {
 	
 	private int idTurma;
 	private int idPessoa;
-	private Year ano;
+	private int ano;
 	private int semestre;
 	
-	public Turma_Voluntario(int idTurma, int idPessoa, Year ano, int semestre) {
+	public Turma_Voluntario(int idTurma, int idPessoa, int ano, int semestre) {
 		super();
 		this.idTurma = idTurma;
 		this.idPessoa = idPessoa;
 		this.ano = ano;
 		this.semestre = semestre;
+	}
+
+	public Turma_Voluntario() {
+		super();
 	}
 
 	public int getIdTurma() {
@@ -33,11 +37,11 @@ public class Turma_Voluntario {
 		this.idPessoa = idPessoa;
 	}
 
-	public Year getAno() {
+	public int getAno() {
 		return ano;
 	}
 
-	public void setAno(Year ano) {
+	public void setAno(int ano) {
 		this.ano = ano;
 	}
 

@@ -11,6 +11,10 @@ public class Anexo {
 		this.enderecoAnexo = enderecoAnexo;
 	}
 
+	public Anexo() {
+		super ();
+	}
+
 	public int getIdPostagem() {
 		return idPostagem;
 	}

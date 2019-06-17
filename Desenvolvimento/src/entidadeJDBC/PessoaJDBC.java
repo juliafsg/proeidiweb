@@ -47,8 +47,8 @@ public class PessoaJDBC extends EntidadeJDBC{
 		try{
 			super.conectar();
 			
-			String sql = "SELECT * FROM pessoa WHERE idPessoa = " + this.retornarValorStringBD(cpf); 
-			
+			String sql = "SELECT * FROM pessoa WHERE cpf= " + this.retornarValorStringBD(cpf); 
+			System.out.println("SQL para BUSCAR em pessoa : " + sql);
 			ResultSet rs = comando.executeQuery(sql);
 			
 			Pessoa pessoa = new Pessoa();
@@ -81,20 +81,20 @@ public class PessoaJDBC extends EntidadeJDBC{
 	// Inserir
 	public void insert(Pessoa pessoa) {
 		try {	
-				super.conectar();
-			
-		        StringBuffer buffer = new StringBuffer();
-		        buffer.append("INSERT INTO pessoa (");
-		        buffer.append(this.retornarCamposBD());
-		        buffer.append(") VALUES (");
-		        buffer.append(retornarValoresBD(pessoa));
-		        buffer.append(")");
-		        String sql = buffer.toString();
+			super.conectar();
+		
+	        StringBuffer buffer = new StringBuffer();
+	        buffer.append("INSERT INTO pessoa (");
+	        buffer.append(this.retornarCamposBD());
+	        buffer.append(") VALUES (");
+	        buffer.append(retornarValoresBD(pessoa));
+	        buffer.append(")");
+	        String sql = buffer.toString();
 
-		        System.out.println("SQL para INSERIR em PESSOA : " + sql);
+	        System.out.println("SQL para INSERIR em PESSOA : " + sql);
 
-		        comando.executeUpdate(sql);
-		        super.fechar();
+	        comando.executeUpdate(sql);
+	        super.fechar();
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -109,7 +109,7 @@ public class PessoaJDBC extends EntidadeJDBC{
         try {
         	super.conectar();
     		
-    		String sql ="DELETE FROM pessoa WHERE cpf=" + this.retornarValorStringBD(pessoa.getCpf());
+    		String sql ="DELETE FROM pessoa WHERE idPessoa=" + pessoa.getIdPessoa();
             System.out.println("SQL para REMOVER em pessoa : "+sql);
 			comando.executeUpdate(sql);
 

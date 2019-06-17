@@ -19,6 +19,10 @@ public class Agendar {
 		this.horario = horario;
 	}
 
+	public Agendar() {
+		super();
+	}
+
 	public int getIdAluno() {
 		return idAluno;
 	}

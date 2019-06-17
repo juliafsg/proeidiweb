@@ -11,6 +11,10 @@ public class Sala {
 		this.sDescricao = sDescricao;
 	}
 
+	public Sala() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getIdSala() {
 		return idSala;
 	}

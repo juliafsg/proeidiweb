@@ -15,6 +15,10 @@ public class Aluno extends Pessoa{
 		this.telefone = telefone;
 	}
 	
+	public Aluno() {
+		super();
+	}
+
 	public int getDDD() {
 		return DDD;
 	}

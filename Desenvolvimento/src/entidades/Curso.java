@@ -15,6 +15,10 @@ public class Curso {
 		this.cargaHoraria = cargaHoraria;
 	}
 
+	public Curso() {
+		super();
+	}
+
 	public int getIdCurso() {
 		return idCurso;
 	}
