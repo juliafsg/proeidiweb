@@ -80,11 +80,11 @@ public class Operacao extends EntidadeJDBC {
 	// Listar Agendamentos
 	
 	public void listarAgendar(AgendarJDBC agendarjdbc) {
-		System.out.println("  Aluno    Voluntário    Data      Horario    Confirmado");
-		System.out.println("-------------------------------------------------------");
+		System.out.println("\t Aluno \t Voluntário \t Data \t\t Horario \t Confirmado");
+		System.out.println("----------------------------------------------------------------------------");
 		List<Agendar> listagendar = agendarjdbc.retrieveAgendamentos();
 		for (Agendar a : listagendar) {
-			System.out.println("     " +a.getIdAluno() + "          " + a.getIdVoluntario() + "      " + a.getData() + "    " + a.getHorario() + "       " + a.isConfirmado());
+			System.out.println("\t " +a.getIdAluno() + " \t   " + a.getIdVoluntario() + " \t \t" + a.getData() + " \t " + a.getHorario() + " \t\t " + a.isConfirmado());
 		}
 		
 	}
@@ -111,12 +111,12 @@ public class Operacao extends EntidadeJDBC {
 			String sql = "SELECT * FROM pessoa NATURAL JOIN horario_disponibilidade"; 
 			
 			ResultSet rs = comando.executeQuery(sql);
-			System.out.println("  Nome       Email                  Disponibilidade");
+			System.out.println(" \tNome\t\tEmail\t\t Disponibilidade");
 			System.out.println("--------------------------------------------------");
 			
 			while (rs.next()){
 				
-				System.out.println(rs.getInt("idPessoa") + " " + rs.getString("pNome") + "     " + rs.getString("pEmail") + "       " + rs.getString("horario_disponibilidade"));
+				System.out.println(rs.getInt("idPessoa") + "\t" + rs.getString("pNome") + "\t" + rs.getString("pEmail") + "\t" + rs.getString("horario_disponibilidade"));
 				
 			}
 			
@@ -130,23 +130,52 @@ public class Operacao extends EntidadeJDBC {
 	 
 	
 	public void listarTurmasPorAluno(Turma_AlunoJDBC turma_alunojdbc, int idAluno) {
-
-		List<Turma_Aluno> turma_alunolist = turma_alunojdbc.retrieveTurma_Aluno();
-		for (Turma_Aluno t : turma_alunolist) {
-			if(t.getIdPessoa() == idAluno) {
-				System.out.println(t.getIdTurma());
+		
+		try{
+			super.conectar();
+			
+			String sql = "select * from turma_aluno natural join turma natural join curso  where idPessoa=" + idAluno; 
+			
+			ResultSet rs = comando.executeQuery(sql);
+			System.out.println("\nTurmas do Aluno com id =" + idAluno);
+			System.out.println("--------------------------------------------------");
+			
+			while (rs.next()){
+				
+				System.out.println(rs.getInt("idTurma")+ "\t"  + rs.getString("cNome"));
+				
 			}
+			
+		} catch(SQLException e){
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
+		
 		
 	}
 	
 	public void listarAlunosPorTurma(Turma_AlunoJDBC turma_alunojdbc, int idTurma) {
 
-		List<Turma_Aluno> turma_alunolist = turma_alunojdbc.retrieveTurma_Aluno();
-		for (Turma_Aluno t : turma_alunolist) {
-			if(t.getIdTurma() == idTurma) {
-				System.out.println(t.getIdPessoa());
+		try{
+			super.conectar();
+			
+			String sql = "select * from turma_aluno natural join pessoa  where idTurma=" + idTurma; 
+			
+			ResultSet rs = comando.executeQuery(sql);
+			System.out.println("\nAlunos da Turma " + idTurma);
+			System.out.println("--------------------------------------------------");
+			
+			while (rs.next()){
+				
+				System.out.println(rs.getInt("idPessoa")+ "\t"  + rs.getString("pNome"));
+				
 			}
-		}	
+			
+		} catch(SQLException e){
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}	
 }

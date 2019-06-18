@@ -30,13 +30,17 @@ public class Main {
 		Lista_EsperaJDBC lista_esperajdbc = new Lista_EsperaJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
 		VoluntarioJDBC voluntariojdbc = new VoluntarioJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
 		Turma_AlunoJDBC turma_alunojdbc = new Turma_AlunoJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
+		Horario_DisponibilidadeJDBC horario_Disponibilidadejdbc = new Horario_DisponibilidadeJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
+	
+		
 		
 		Operacao comando = new Operacao("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");	
-		System.out.println("\n---------------------------------------");
-		System.out.println("	     ProEIDI Web");
-		System.out.println("---------------------------------------");
 		
 		while (valid) {
+			
+			System.out.println("\n---------------------------------------");
+			System.out.println("	     ProEIDI Web");
+			System.out.println("---------------------------------------");
 			
 			String acoes = "\n\n"
 					+ "0: Sair\n"
@@ -142,8 +146,11 @@ public class Main {
 		
 		
 		// PESSOA		
-		//Pessoa pessoa = new Pessoa(2,"Abmael", dataN, "01544377", "netless@gmail.com", true, "abma123", dataM);    
-		//PessoaJDBC pessoajdbc = new PessoaJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");	
+		//Pessoa pessoa = new Pessoa(100, "Marcel", dataN, "01675888374", "marcel@dimap.com.br", true, "vou passar geral", dataM); 
+		PessoaJDBC pessoajdbc = new PessoaJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");	
+		//pessoajdbc.insert(pessoa);
+		//pessoa = pessoajdbc.search("01478622291");
+		//pessoa.setpNome("Hamur");	
 		//pessoajdbc.update(pessoa);
 		//pessoajdbc.remove(pessoa);	
 		
@@ -153,13 +160,15 @@ public class Main {
 		//alunojdbc.insert(aluno);
 		
 		// VOLUNTÁRIO
-		//Voluntario voluntario = new Voluntario(3,"Abmael", dataN, "01544377", "netless@gmail.com", true, "abma123", dataM, 84, "988887654", false);    
-		//VoluntarioJDBC voluntariojdbc = new VoluntarioJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
+		//Voluntario voluntario = new Voluntario(100, "Marcel", dataN, "01675888374", "marcel@dimap.com.br", true, "vou passar geral", dataM, 84, "96667789", false);    
+		VoluntarioJDBC voluntariojdbc = new VoluntarioJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
+		//pessoajdbc.insert(voluntario);
 		//voluntariojdbc.insert(voluntario);
 		//voluntariojdbc.remove(voluntario);	
+		//pessoajdbc.remove(pessoa);
 		
 		// CURSO
-		//Cur4so curso = new Curso(1,"Smatphone", "aprender a usar o celular", 4);
+		//Curso curso = new Curso(1,"Smatphone", "aprender a usar o celular", 4);
 		//CursoJDBC cursojdbc = new CursoJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
 		//cursojdbc.insert(curso);
 		
@@ -227,9 +236,25 @@ public class Main {
 		//lista_Esperajdbc.insert(lista_Espera);
 		
 		// HORARIO_DISPONIBILIDADE
-		//Horario_Disponibilidade horario_Disponibilidade= new Horario_Disponibilidade(1,"M12",2019,2);
-		//Horario_DisponibilidadeJDBC horario_Disponibilidadejdbc = new Horario_DisponibilidadeJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
+		//Horario_Disponibilidade horario_Disponibilidade= new Horario_Disponibilidade(100,"2M12",2019,2);
+		Horario_DisponibilidadeJDBC horario_Disponibilidadejdbc = new Horario_DisponibilidadeJDBC("jdbc:mysql://localhost/proeidiweb","projeto","pass12344321");
 		//horario_Disponibilidadejdbc.insert(horario_Disponibilidade);
+		
+		
+		
+		
+		// EXEMPLO
+		
+		Voluntario voluntario = new Voluntario(100, "Marcel", dataN, "01675888374", "marcel@dimap.com.br", true, "vou passar geral", dataM, 84, "96667789", false);    
+		Horario_Disponibilidade horario_Disponibilidade= new Horario_Disponibilidade(100,"2M12",2019,2);
+		
+		pessoajdbc.insert(voluntario);
+		voluntariojdbc.insert(voluntario);
+		horario_Disponibilidadejdbc.insert(horario_Disponibilidade);
+		
+		pessoajdbc.remove(voluntario);
+		
+		
 		
 		
 		
